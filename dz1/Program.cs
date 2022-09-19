@@ -46,5 +46,22 @@ void zadacha4(){
     WriteLine($"Максимальное число из введённых: {max}");
 }
 
+/* адача 6: Напишите программу, которая на вход 
+принимает число и выдаёт, является ли число чётным 
+(делится ли оно на два без остатка). */
+void zadacha6(){
+    Write("Введите число: ");
+    int number = Convert.ToInt32(ReadLine());
+    if (number%2==0){
+        WriteLine($"Число {number} является чётным");
+    }
+    else
+    {
+        WriteLine($"Число {number} является нечётным");
+    }
+}
+
+
 // zadacha2();
-zadacha4();
+// zadacha4();
+zadacha6();
