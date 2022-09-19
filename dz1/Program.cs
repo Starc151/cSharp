@@ -61,7 +61,21 @@ void zadacha6(){
     }
 }
 
+/* Задача 8: Напишите программу, которая на вход 
+принимает число (N), а на выходе показывает все чётные 
+числа от 1 до N. */
+
+void zadacha8(){
+    Write("Введите число: ");
+    int number = Convert.ToInt32(ReadLine());
+    for (int i = 2; i <= number; i += 2) //i = 2 т.к. 1 нечётное число
+    {
+    Write(i + " ");
+    } 
+}
+
 
 // zadacha2();
 // zadacha4();
-zadacha6();
+// zadacha6();
+//zadacha8();
