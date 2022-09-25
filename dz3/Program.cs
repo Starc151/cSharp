@@ -17,20 +17,21 @@ void zadacha19(){
 }
 
 /*Задача 21 Напишите программу, которая принимает на вход координаты двух точек
-и находит расстояние между ними в 3D пространстве.*/
+и находит расстояние между ними в 3D пространстве.
+Возможно перемудрил, но хотелось поэкспериментировать*/
 // AB = √(b[0] - a[0])2 + (b[1] - a[1])2 + (b[2] - a[2])2
+
 void zadacha21(){
-  double[] a = {0, 0, 0};
-  double[] b = {0, 0, 0};
-  
-  WriteLine("Введите координаты первой точки через enter: ");
-  for (int i=0; i<3; i++){
-    a[i] = Convert.ToInt32(ReadLine());
-  }
-  WriteLine("Введите координаты второй точки через enter: ");
-  for (int i=0; i<3; i++){
-    b[i] = Convert.ToInt32(ReadLine());
-  }
+  int[] DistanceAB(string text){
+    int[] arr = new int[3];
+    WriteLine($"Введите координаты {text} точки через enter: ");
+    for (int i=0; i<3; i++){
+      arr[i] = Convert.ToInt32(ReadLine());
+    }
+    return arr;
+  } 
+  int[] a=DistanceAB("первой");
+  int[] b=DistanceAB("второй");
   Write(Round(Sqrt(Pow((b[0] - a[0]), 2)+Pow((b[1] - a[1]), 2)+Pow((b[2] - a[2]), 2)), 2));
 }
 //zadacha19();
