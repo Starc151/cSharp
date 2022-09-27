@@ -21,5 +21,19 @@ int GetSum(int num){
     }
     return sum;
 }
-// GetDegree(3, 5);
+
+/*Задача 29: Напишите метод, который формирует массив из 8 случайных элементов
+и выводит их на экран.*/
+void GetArray(){
+    int[] arr= new int[8];
+    Write("[");
+    for(int i=0;i<arr.Length-1;i++){
+        arr[i] = new Random().Next(0, 101);
+        Write($"{arr[i]}, ");
+    }
+    Write($"{arr[7]}]");
+}
+
+WriteLine(GetDegree(3, 5));
 WriteLine(GetSum(452));
+GetArray();
