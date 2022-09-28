@@ -3,10 +3,7 @@ Clear();
 
 int[] MaxDuplicate(int numElements, int numSought){
     int count=0;
-    int[] result= new int[3];
-    result[0]=0;
-    result[1]=numElements;
-    result[2]=numSought;
+    int[] result= {0, numElements, numSought};
     int[] arr = new int[numElements];
     for (int i=0; i<numElements; i++){
         arr[i] = new Random().Next(0, 2);
@@ -18,10 +15,9 @@ int[] MaxDuplicate(int numElements, int numSought){
     }
     //Красивый вывод масива (взято из инета)
     WriteLine("[{0}]", string.Join(", ", arr));
+    
     // конечная проверка на максимальный результат
-    if(result[0]<count){
-        result[0]=count;
-    }
+    if(result[0]<count){result[0]=count;}
     WriteLine();
     return result;    // Возвращает массив, где result[0] ответ, result[1], длина массива, result[2] искомый элемент
 }
