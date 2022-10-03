@@ -14,6 +14,16 @@ void PrintEven(int[] arr){
     foreach(int i in arr){
         if(i%2==0){result++;}
     }
-    Write(result);
+    WriteLine($"Количество четных чисел в массиве {result}");
 }
+/* Задача 36Найдите сумму элементов, стоящих на нечётных позициях массива.*/
+int GetOddPositions(int[] arr){
+    int sum=0;   
+    for(int i=1; i<arr.Length; i+=2){
+        sum+=arr[i];
+    }
+    return sum;
+}
+
 PrintEven(arr);
+WriteLine($"Сумма элементов, стоящих на нечётных позициях массива равна {GetOddPositions(arr)}");
