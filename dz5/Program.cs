@@ -24,6 +24,11 @@ int GetOddPositions(int[] arr){
     }
     return sum;
 }
+/*Задача 38:Найдите разницу между максимальным и минимальным элементов массива.*/
+int GetDiffMaxMin(int[] arr){
+
+}
 
 PrintEven(arr);
 WriteLine($"Сумма элементов, стоящих на нечётных позициях массива равна {GetOddPositions(arr)}");
+WriteLine($"Разница между максимальным и минимальным элементом массива {GetDiffMaxMin(arr)}");
