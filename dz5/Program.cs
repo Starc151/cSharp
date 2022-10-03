@@ -26,7 +26,13 @@ int GetOddPositions(int[] arr){
 }
 /*Задача 38:Найдите разницу между максимальным и минимальным элементов массива.*/
 int GetDiffMaxMin(int[] arr){
-
+    int min=arr[0];
+    int max=0;
+    foreach(int i in arr){
+        if(max<i){max=i;}
+        if(min>i){min=i;}
+    }
+    return max-min;
 }
 
 PrintEven(arr);
