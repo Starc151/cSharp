@@ -7,7 +7,7 @@ int[] arr=Array.ConvertAll(ReadLine().Split(new char[]{' ', ',', '.'}, StringSpl
 int GetNumberPositive(int[] arr){
     int count=0;
     foreach(int i in arr){
-        count++;
+        if(i>0){count++;}
     }
     return count;
 }
