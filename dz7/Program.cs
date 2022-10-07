@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using static System.Console;
+Clear();
+
+//Задача 47. Задайте двумерный массив размером m×n,
+// заполненный случайными вещественными числами.
