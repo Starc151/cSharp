@@ -11,8 +11,7 @@ double[,] GetMatrixArr(int rows, int colums)
     {
         for (int j = 0; j < inArr.GetLength(1); j++)
         {
-
-            inArr[i, j] = rnd.Next(-100, 11) / 10d;
+            inArr[i, j] = rnd.Next(-100, 101) / 10d;
         }
     }
     return inArr;
