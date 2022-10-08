@@ -33,17 +33,37 @@ void PrintMatrix(double[,] inArr)
 //и возвращает значение этого элемента или же указание, что такого элемента нет.
 void GetValueInMatrix(double[,] inArr, int positionRow, int positionColum)
 {
-    if (positionRow-1<inArr.GetLength(0) && positionColum-1<inArr.GetLength(1)){
-        WriteLine($"Искомый элемент по заданным значениям: {inArr[positionRow-1, positionColum-1]}");
-    } else{
+    if (positionRow - 1 < inArr.GetLength(0) && positionColum - 1 < inArr.GetLength(1))
+    {
+        WriteLine($"Искомый элемент по заданным значениям: {inArr[positionRow - 1, positionColum - 1]}");
+    }
+    else
+    {
         WriteLine("Такого элемента нет");
     }
 }
-Write("ВВедите количество строк и столбцов матрицы: ");
-int[] paramMatrix = Array.ConvertAll(ReadLine().Split(new char[]{' ', ','}, StringSplitOptions.RemoveEmptyEntries), int.Parse);
-Write("Введите искомую позицию в матрице: ");
-int[] position = Array.ConvertAll(ReadLine().Split(new char[]{' ', ','}, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+//Задача 52. Задайте двумерный массив из целых чисел. Найдите среднее арифметическое элементов в каждом столбце.
+double[] GetArithmeticMean(double[,] inArr)
+{
+    double[] summ = new double[inArr.GetLength(1)];
+    for (int j = 0; j < inArr.GetLength(1); j++)
+    {
+        for (int i = 0; i < inArr.GetLength(0); i++)
+        {
+            summ[j] += inArr[i, j];
+        }
+        summ[j] = Math.Round(summ[j] / inArr.GetLength(0), 2);
+    }
+    return summ;
+}
 
-double[,] arrForDz7=GetMatrix(paramMatrix[0], paramMatrix[1]);
+
+Write("ВВедите количество строк и столбцов матрицы: ");
+int[] paramMatrix = Array.ConvertAll(ReadLine().Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+Write("Введите искомую позицию в матрице: ");
+int[] position = Array.ConvertAll(ReadLine().Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries), int.Parse);
+
+double[,] arrForDz7 = GetMatrix(paramMatrix[0], paramMatrix[1]);
 PrintMatrix(arrForDz7);
 GetValueInMatrix(arrForDz7, position[0], position[1]);
+Write($"Среднее арифметическое каждого столбца: {string.Join(", ", GetArithmeticMean(arrForDz7))}");
