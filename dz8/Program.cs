@@ -1,11 +1,16 @@
 ﻿using static System.Console;
 Clear();
+int[] GetParamMatrix(int num){
+    Write($"Введите количество строк и столбцов матрицы №{num} через пробел: ");
+    int[] paramMatrix = Array.ConvertAll(ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries), int.Parse);
+    return paramMatrix;
+}
 
-int[,] GetMatrix(){
-    int[,] inArr=new int [4, 4];
+int[,] GetMatrix(int[] paramMatrix){
+    int[,] inArr=new int [paramMatrix[0], paramMatrix[1]];
     Random rnd=new Random();
-    for(int i=0; i<4; i++){
-        for(int j=0; j<4; j++){
+    for(int i=0; i<inArr.GetLength(0); i++){
+        for(int j=0; j<inArr.GetLength(1); j++){
             inArr[i, j]=rnd.Next(0, 9);
         }
     }
@@ -35,10 +40,10 @@ int[,] GetMatrix(){
 // }
 //Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку
 //с наименьшей суммой элементов.
-void GetRowMinimumSumm(int[,] inArr){
+int GetRowMinimumSumm(int[,] inArr){
     int summ=0;
     int temp=0;
-    int count=1;
+    int numRow=1;
     for(int i=0; i<inArr.GetLength(1); i++){
         summ+=inArr[0,i];
     }
@@ -48,16 +53,29 @@ void GetRowMinimumSumm(int[,] inArr){
         }
         if(summ>temp){
             summ=temp;
-            count=i+1;    
+            numRow=i+1;    
         }
         temp=0;
     }
-    Write($"Номер строки с наименьшей суммой чисел{count}");
+    return numRow;
+}
+// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+void IfErroe(int[,] matrix1, int[,] matrix2){
+    if(matrix1.GetLength(1)!=matrix2.GetLength(0)){
+        WriteLine("Такое произведение не возможно!");
+    }else{
+        WriteLine
+    }
+    
+}
+int GetMultiMatrices(int[,] matrix1, int[,] matrix2){
+    return 1;
 }
 
+int[,] arrDz8_1=GetMatrix(GetParamMatrix(1));
+int[,] arrDz8_2=GetMatrix(GetParamMatrix(2));
+PrintMatrix(arrDz8_1);
+PrintMatrix(arrDz8_2);
 
-
-
-int[,] arrDz8=GetMatrix();
-PrintMatrix(arrDz8);
-GetRowMinimumSumm(arrDz8);
+WriteLine($"Номер строки с наименьшей суммой чисел в массиве №1: {GetRowMinimumSumm(arrDz8_1)}");
+WriteLine(GetMultiMatrices(arrDz8_1, arrDz8_2));
