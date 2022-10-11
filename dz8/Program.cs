@@ -11,7 +11,7 @@ int[,] GetMatrix(int[] paramMatrix){
     Random rnd=new Random();
     for(int i=0; i<inArr.GetLength(0); i++){
         for(int j=0; j<inArr.GetLength(1); j++){
-            inArr[i, j]=rnd.Next(0, 9);
+            inArr[i, j]=rnd.Next(1, 6);
         }
     }
     return inArr;
@@ -25,7 +25,6 @@ int[,] GetMatrix(int[] paramMatrix){
     }
     WriteLine();
  }
-
 //Задача 54: Задайте двумерный массив. Напишите программу,
 //которая упорядочит по убыванию элементы каждой строки двумерного массива.
 // int[,] GetMatrixDescending(int[,] inArr){
@@ -60,16 +59,16 @@ int GetRowMinimumSumm(int[,] inArr){
     return numRow;
 }
 // Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
-void IfErroe(int[,] matrix1, int[,] matrix2){
-    if(matrix1.GetLength(1)!=matrix2.GetLength(0)){
-        WriteLine("Такое произведение не возможно!");
-    }else{
-        WriteLine
+int[,] GetMultiMatrices(int[,] matrixA, int[,] matrixB){
+    int[,] multiMatrix=new int[matrixA.GetLength(0), matrixB.GetLength(1)];
+    for (int i=0; i<matrixA.GetLength(0); i++){
+        for (int j=0; j<matrixB.GetLength(1); j++){
+            for (int k=0; k<matrixB.GetLength(0); k++){
+                multiMatrix[i, j] += matrixA[i, k] * matrixB[k, j];
+            }
+        }
     }
-    
-}
-int GetMultiMatrices(int[,] matrix1, int[,] matrix2){
-    return 1;
+    return multiMatrix;
 }
 
 int[,] arrDz8_1=GetMatrix(GetParamMatrix(1));
@@ -78,4 +77,11 @@ PrintMatrix(arrDz8_1);
 PrintMatrix(arrDz8_2);
 
 WriteLine($"Номер строки с наименьшей суммой чисел в массиве №1: {GetRowMinimumSumm(arrDz8_1)}");
-WriteLine(GetMultiMatrices(arrDz8_1, arrDz8_2));
+WriteLine();
+if(arrDz8_1.GetLength(1)!=arrDz8_2.GetLength(0)){
+    Write("Произведение этих двух матриц невозможно!");
+}else{
+    WriteLine("Произведение матириц:");
+    PrintMatrix(GetMultiMatrices(arrDz8_1, arrDz8_2));
+}
+
