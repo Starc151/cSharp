@@ -11,7 +11,7 @@ int[,] GetMatrix(int[] paramMatrix){
     Random rnd=new Random();
     for(int i=0; i<inArr.GetLength(0); i++){
         for(int j=0; j<inArr.GetLength(1); j++){
-            inArr[i, j]=rnd.Next(1, 6);
+            inArr[i, j]=rnd.Next(0, 10);
         }
     }
     return inArr;
@@ -27,16 +27,21 @@ int[,] GetMatrix(int[] paramMatrix){
  }
 //Задача 54: Задайте двумерный массив. Напишите программу,
 //которая упорядочит по убыванию элементы каждой строки двумерного массива.
-// int[,] GetMatrixDescending(int[,] inArr){
-//     for(int i=0; i<inArr.GetLength(0); i++){
-//         int[] arrDescending=new int[inArr.GetLength(1)];
-//         for(int j=0; j<inArr.GetLength(1); j++){
-//             // arrDescending[i]=inArr[i,j];
-//         }
-//         // Array.Sort(arrDescending[i]);
-//     }
-//     return inArr;
-// }
+int[,] GetMatrixDescending(int[,] inArr){
+    int temp=0;
+    for(int i=0; i<inArr.GetLength(0); i++){
+        for (int k=0; k<inArr.GetLength(1)-1; k++){
+            for (int j=k+1; j<inArr.GetLength(1); j++){
+                if (inArr[i, k]<inArr[i, j]){
+                    temp = inArr[i, k];
+                    inArr[i, k] = inArr[i, j];
+                    inArr[i, j] = temp;
+                }
+            }
+        }
+    }
+    return inArr;
+}
 //Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку
 //с наименьшей суммой элементов.
 int GetRowMinimumSumm(int[,] inArr){
@@ -76,12 +81,15 @@ int[,] arrDz8_2=GetMatrix(GetParamMatrix(2));
 PrintMatrix(arrDz8_1);
 PrintMatrix(arrDz8_2);
 
+WriteLine("Массив №1 с отсортированными строками:");
+PrintMatrix(GetMatrixDescending(arrDz8_1));
+
 WriteLine($"Номер строки с наименьшей суммой чисел в массиве №1: {GetRowMinimumSumm(arrDz8_1)}");
 WriteLine();
+
 if(arrDz8_1.GetLength(1)!=arrDz8_2.GetLength(0)){
     Write("Произведение этих двух матриц невозможно!");
 }else{
     WriteLine("Произведение матириц:");
     PrintMatrix(GetMultiMatrices(arrDz8_1, arrDz8_2));
 }
-
