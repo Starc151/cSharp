@@ -1,7 +1,7 @@
 ﻿using static System.Console;
 Clear();
 int[] GetParamMatrix(int num){
-    Write($"Введите количество строк и столбцов матрицы №{num} через пробел: ");
+    Write($"Введите размерность матрицы №{num} через пробел: ");
     int[] paramMatrix = Array.ConvertAll(ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries), int.Parse);
     return paramMatrix;
 }
@@ -75,6 +75,47 @@ int[,] GetMultiMatrices(int[,] matrixA, int[,] matrixB){
     }
     return multiMatrix;
 }
+//Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел.
+//Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+void GetMatrix3(int x, int y, int z){
+    if((x*y*z)>90){
+        WriteLine("Невозможно заполнить неповторяющимися двузначными числами");
+        return;
+    }
+    Random rnd=new Random();
+    int[,,] matrix3 = new int[z, y, y];
+    int reservLen=90;
+    int[] reserv=new int[reservLen];
+    
+    for(int i=0; i<reservLen; i++){
+        reserv[i]=i+10;
+    }
+    for (int i=0, j=0, tmp=0; i<reservLen; i++){
+        j=rnd.Next(reservLen);
+        tmp=reserv[j];
+        reserv[j] = reserv[i];
+        reserv[i] = tmp;
+    }
+    for(int i=0, r=0; i<matrix3.GetLength(0); i++){
+        for(int j=0; j<matrix3.GetLength(1); j++){
+            for(int k=0; k<matrix3.GetLength(2); k++, r++){
+                matrix3[i, j, k]=reserv[r];
+            }
+        }
+    }
+    WriteLine($"Трёхмерный массив {x}х{y}х{z}х");
+    for(int i=0; i<matrix3.GetLength(0); i++){
+        for(int j=0; j<matrix3.GetLength(1); j++){
+            for(int k=0; k<matrix3.GetLength(2); k++){
+                Write($"{matrix3[i, j, k]}({i},{j},{k}) ");
+            }
+            WriteLine();
+        }
+        WriteLine();
+    }
+    WriteLine();
+}
+
 
 int[,] arrDz8_1=GetMatrix(GetParamMatrix(1));
 int[,] arrDz8_2=GetMatrix(GetParamMatrix(2));
@@ -93,3 +134,6 @@ if(arrDz8_1.GetLength(1)!=arrDz8_2.GetLength(0)){
     WriteLine("Произведение матириц:");
     PrintMatrix(GetMultiMatrices(arrDz8_1, arrDz8_2));
 }
+
+int[] paramMatrix3=GetParamMatrix(3);
+GetMatrix3(paramMatrix3[0], paramMatrix3[1], paramMatrix3[2]);
