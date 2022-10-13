@@ -1,8 +1,8 @@
 ﻿using static System.Console;
 Clear();
-int[] GetParamMatrix(int num){
-    Write($"Введите размерность матрицы №{num} через пробел: ");
-    int[] paramMatrix = Array.ConvertAll(ReadLine().Split(' ', StringSplitOptions.RemoveEmptyEntries), int.Parse);
+int[] GetParamMatrix(string comment){
+    Write($"Введите размерность матрицы {comment}, через пробел: ");
+    int[] paramMatrix = Array.ConvertAll(ReadLine()!.Split(' ', StringSplitOptions.RemoveEmptyEntries), int.Parse);
     return paramMatrix;
 }
 
@@ -115,10 +115,40 @@ void GetMatrix3(int x, int y, int z){
     }
     WriteLine();
 }
-
-
-int[,] arrDz8_1=GetMatrix(GetParamMatrix(1));
-int[,] arrDz8_2=GetMatrix(GetParamMatrix(2));
+//Задача 62. Напишите программу, которая заполнит спирально массив
+int[,] SnailArr(int[] paramMatrix){
+    int sizeY=paramMatrix[0];
+    int sizeX=paramMatrix[1];
+    int[,] inArr=new int[sizeY, sizeX];
+    int offsetY=0;
+    int offsetX=0;
+    int count=1;
+    while(sizeY>0){
+        for(int y=0; y<4; y++){
+            for(int x=0; x<((sizeX<sizeY) ? sizeY :sizeX); x++){
+                if(y==0 && x<sizeX-offsetX){
+                    inArr[y+offsetY, x+offsetX]=count++;
+                }
+                if(y==1 && x<sizeY-offsetY && x!=0){
+                    inArr[x+offsetY, sizeX-1] = count++;
+                }
+                if (y==2 && x<sizeX-offsetX && x!=0){
+                    inArr[sizeY-1, sizeX-(x+1)]=count++;
+                }
+                if (y==3 && x<sizeY-(offsetY+1) && x!=0){
+                    inArr[sizeY-(x+1), offsetY]=count++;
+                }
+            }
+        }
+        sizeY--;
+        sizeX--;
+        offsetY ++;
+        offsetX ++;
+    }
+    return inArr;
+}
+int[,] arrDz8_1=GetMatrix(GetParamMatrix("№1"));
+int[,] arrDz8_2=GetMatrix(GetParamMatrix("№2"));
 PrintMatrix(arrDz8_1);
 PrintMatrix(arrDz8_2);
 
@@ -135,5 +165,8 @@ if(arrDz8_1.GetLength(1)!=arrDz8_2.GetLength(0)){
     PrintMatrix(GetMultiMatrices(arrDz8_1, arrDz8_2));
 }
 
-int[] paramMatrix3=GetParamMatrix(3);
+int[] paramMatrix3=GetParamMatrix("3х3");
 GetMatrix3(paramMatrix3[0], paramMatrix3[1], paramMatrix3[2]);
+
+WriteLine("Массив Улитка:");
+PrintMatrix(SnailArr(GetParamMatrix("для закручивания улиткой")));
